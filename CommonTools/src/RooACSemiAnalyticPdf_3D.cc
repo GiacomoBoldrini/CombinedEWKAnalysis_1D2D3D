@@ -9,9 +9,10 @@
 #include "Riostream.h" 
 
 #include "RooAbsData.h"
-#include "HiggsAnalysis/CombinedLimit/interface/RooACSemiAnalyticPdf_3D.h" 
+#include "CombinedEWKAnalysis/CommonTools/interface/RooACSemiAnalyticPdf_3D.h" 
 
 #include <math.h> 
+#include <string>
 #include "TMath.h" 
 #include "RooFormulaVar.h"
 #include "RooRealVar.h"
@@ -20,8 +21,6 @@
 #include "TFile.h"
 
 //using namespace RooFit ;
-
-ClassImp(RooACSemiAnalyticPdf_3D) 
 
 RooACSemiAnalyticPdf_3D::RooACSemiAnalyticPdf_3D() : 
   type_(notype), P_par1par2par3_histo(0), P_par1par2par3_TF(0)
@@ -142,7 +141,7 @@ void RooACSemiAnalyticPdf_3D::initializeNormalization(const std::string& rName,
 
     RooRealVar& b = const_cast<RooRealVar&>(rdep);
 
-    const string intRange="integRange";
+    const std::string intRange="integRange";
 
     b.setRange((const char*)intRange.c_str(),bin_low,bin_high); 
     RooAbsReal* integral = shape.createIntegral(RooArgSet(rdep),RooArgSet(),(const char*)intRange.c_str());
@@ -437,10 +436,10 @@ analyticalIntegral(Int_t code, const char* rangeName) const {
       break;
     }
   }
-  cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1(v1): "<<v1<<" par2(v2): "<<v2<<" par3(v3): "<<v3 <<" ret: "<<ret<< endl;
-  cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1: "<<par1<<" par2: "<<par2<<" par3: "<<par3 <<" ret: "<<ret<< endl;
+  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1(v1): "<<v1<<" par2(v2): "<<v2<<" par3(v3): "<<v3 <<" ret: "<<ret<< std::endl;
+  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1: "<<par1<<" par2: "<<par2<<" par3: "<<par3 <<" ret: "<<ret<< std::endl;
   
-  cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---> integral: "<<ret<< endl;
+  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---> integral: "<<ret<< std::endl;
 
   return ret;
 }

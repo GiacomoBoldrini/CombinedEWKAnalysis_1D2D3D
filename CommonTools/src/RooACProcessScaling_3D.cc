@@ -8,17 +8,16 @@
 
 #include "Riostream.h" 
 
-#include "HiggsAnalysis/CombinedLimit/interface/RooACProcessScaling_3D.h" 
+#include "CombinedEWKAnalysis/CommonTools/interface/RooACProcessScaling_3D.h" 
 
 #include <math.h> 
+#include <string>
 #include "TMath.h" 
 #include "RooFormulaVar.h"
 #include "RooRealVar.h"
 #include "RooFit.h"
 
 #include "TFile.h"
-
-ClassImp(RooACProcessScaling_3D) 
 
 RooACProcessScaling_3D::RooACProcessScaling_3D() : 
   type_(notype),
@@ -99,7 +98,7 @@ void RooACProcessScaling_3D::initializeNormalization(const RooAbsReal& dep,
   
   bool bin_true=rdep.hasBinning("");
   if (!bin_true)
-    cout <<"\t @@@@@@@@@@@ can't find biining! (RooATGCProcessScaling file)" << endl;
+    std::cout <<"\t @@@@@@@@@@@ can't find biining! (RooATGCProcessScaling file)" << std::endl;
 
   int N_bins=rdep.getBinning("").numBins();
 
@@ -111,7 +110,7 @@ void RooACProcessScaling_3D::initializeNormalization(const RooAbsReal& dep,
   for(int i=0; i<N_bins; ++i) {
     int bin_low=rdep.getBinning("").binLow(i);
     int bin_high=rdep.getBinning("").binHigh(i);
-    const string intRange="integRange";
+    const std::string intRange="integRange";
     b.setRange((const char*)intRange.c_str(),bin_low,bin_high);
     RooAbsReal* integral = shape.createIntegral(RooArgSet(rdep),RooArgSet(),(const char*)intRange.c_str());
     integral_basis.push_back(integral->getVal());
@@ -306,7 +305,7 @@ Double_t RooACProcessScaling_3D::evaluate() const
   for(int i = 0; i<N_bins; i++) {
  
     switch(type_) {
-      cout <<"place D: case type= "<<type_ << endl;
+      std::cout <<"place D: case type= "<<type_ << std::endl;
     case par1par2par3_TH3:
       ret += P_histo[i]->Interpolate(v1,v2,v3)*integral_basis[i];
       break;
@@ -331,7 +330,7 @@ Double_t RooACProcessScaling_3D::evaluate() const
       break;
     }
   }
-  cout << "ret/SM_integral= "<< ret<<"/"<<SM_integral<<" = "<< ret/SM_integral << endl;
+  std::cout << "ret/SM_integral= "<< ret<<"/"<<SM_integral<<" = "<< ret/SM_integral << std::endl;
   return ret/SM_integral;
 
 }

@@ -8,17 +8,16 @@
 
 #include "Riostream.h" 
 
-#include "HiggsAnalysis/CombinedLimit/interface/RooACProcessScaling_1D.h" 
+#include "CombinedEWKAnalysis/CommonTools/interface/RooACProcessScaling_1D.h" 
 
 #include <math.h> 
+#include <string>
 #include "TMath.h" 
 #include "RooFormulaVar.h"
 #include "RooRealVar.h"
 #include "RooFit.h"
 
 #include "TFile.h"
-
-ClassImp(RooACProcessScaling_1D) 
 
 RooACProcessScaling_1D::RooACProcessScaling_1D() : 
   type_(notype),P_par1_histo(0),P_par1_TF(0)
@@ -92,7 +91,7 @@ void RooACProcessScaling_1D::initializeNormalization(const RooAbsReal& dep,
   
   bool bin_true=rdep.hasBinning("");
   if (!bin_true)
-    cout <<"\t @@@@@@@@@@@ can't find biining! (RooATGCProcessScaling file)" << endl;
+    std::cout <<"\t @@@@@@@@@@@ can't find biining! (RooATGCProcessScaling file)" << std::endl;
 
   int N_bins=rdep.getBinning("").numBins();
 
@@ -104,7 +103,7 @@ void RooACProcessScaling_1D::initializeNormalization(const RooAbsReal& dep,
   for(int i=0; i<N_bins; ++i) {
     int bin_low=rdep.getBinning("").binLow(i);
     int bin_high=rdep.getBinning("").binHigh(i);
-    const string intRange="integRange";
+    const std::string intRange="integRange";
     b.setRange((const char*)intRange.c_str(),bin_low,bin_high); 
     RooAbsReal* integral = shape.createIntegral(RooArgSet(rdep),RooArgSet(),(const char*)intRange.c_str());
     integral_basis.push_back(integral->getVal());
@@ -261,7 +260,7 @@ Double_t RooACProcessScaling_1D::evaluate() const
       break;
     }
   }
-  cout << "ret/SM_integral= "<< ret<<"/"<<SM_integral<<" = "<< ret/SM_integral << endl;
+  std::cout << "ret/SM_integral= "<< ret<<"/"<<SM_integral<<" = "<< ret/SM_integral << std::endl;
   return ret/SM_integral;
 
 }

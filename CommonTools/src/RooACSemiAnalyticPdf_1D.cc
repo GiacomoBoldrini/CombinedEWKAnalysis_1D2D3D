@@ -9,9 +9,10 @@
 #include "Riostream.h" 
 
 #include "RooAbsData.h"
-#include "HiggsAnalysis/CombinedLimit/interface/RooACSemiAnalyticPdf_1D.h" 
+#include "CombinedEWKAnalysis/CommonTools/interface/RooACSemiAnalyticPdf_1D.h" 
 
 #include <math.h> 
+#include <string>
 #include "TMath.h" 
 #include "RooFormulaVar.h"
 #include "RooRealVar.h"
@@ -20,8 +21,6 @@
 #include "TFile.h"
 
 //using namespace RooFit ;
-
-ClassImp(RooACSemiAnalyticPdf_1D) 
 
 RooACSemiAnalyticPdf_1D::RooACSemiAnalyticPdf_1D() : 
   type_(notype), P_par1_histo(0), P_par1_TF(0)
@@ -134,7 +133,7 @@ void RooACSemiAnalyticPdf_1D::initializeNormalization(const std::string& rName,
 
     RooRealVar& b = const_cast<RooRealVar&>(rdep);
 
-    const string intRange="integRange";
+    const std::string intRange="integRange";
 
     b.setRange((const char*)intRange.c_str(),bin_low,bin_high); 
     RooAbsReal* integral = shape.createIntegral(RooArgSet(rdep),RooArgSet(),(const char*)intRange.c_str());
@@ -295,15 +294,13 @@ Double_t RooACSemiAnalyticPdf_1D::evaluate() const
   return ret; 
 }
 
-Int_t RooACSemiAnalyticPdf_1D::
-getAnalyticalIntegral(RooArgSet& allVars,RooArgSet& analVars, 
+Int_t RooACSemiAnalyticPdf_1D::getAnalyticalIntegral(RooArgSet& allVars,RooArgSet& analVars, 
 		      const char* /*rangeName*/) const {  
   if (matchArgs(allVars,analVars,x)) return 1 ;
   return 0 ;
 }
 
-Double_t RooACSemiAnalyticPdf_1D::
-analyticalIntegral(Int_t code, const char* rangeName) const {  
+Double_t RooACSemiAnalyticPdf_1D::analyticalIntegral(Int_t code, const char* rangeName) const {  
 
   assert(code==1 && "invalid analytic integration code!");
 
@@ -344,9 +341,9 @@ analyticalIntegral(Int_t code, const char* rangeName) const {
     }
 
   }
-  cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1(v1): "<<v1 <<" ret: "<<ret<< endl;
+  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1(v1): "<<v1 <<" ret: "<<ret<< std::endl;
   
-  cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---> integral: "<<ret<< endl;
+  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---> integral: "<<ret<< std::endl;
 
   return ret;
 }

@@ -67,9 +67,6 @@ protected:
   
   virtual double evaluate() const ;
   
-private:
-  
-  ClassDef(RooACProcessScaling_2D, 3) // aTGC function 
 };
 
 #endif
