@@ -75,9 +75,6 @@ protected:
   
   virtual double evaluate() const ;
   
-private:
-  
-  ClassDef(RooACSemiAnalyticPdf_3D, 2) // aTGC function 
 };
 
 #endif

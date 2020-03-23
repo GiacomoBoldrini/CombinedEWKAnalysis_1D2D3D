@@ -1,6 +1,4 @@
 // -*- mode: c++ -*-
-
-
 #ifndef ROOACPROCESSSCALING_1D
 #define ROOACPROCESSSCALING_1D
 
@@ -62,9 +60,6 @@ protected:
   
   virtual double evaluate() const ;
   
-private:
-  
-  ClassDef(RooACProcessScaling_1D, 3) // aTGC function 
 };
 
 #endif
