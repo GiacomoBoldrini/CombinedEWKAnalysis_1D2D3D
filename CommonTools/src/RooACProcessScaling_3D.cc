@@ -335,3 +335,4 @@ Double_t RooACProcessScaling_3D::evaluate() const
 
 }
 
+ClassImp(RooACProcessScaling_3D)

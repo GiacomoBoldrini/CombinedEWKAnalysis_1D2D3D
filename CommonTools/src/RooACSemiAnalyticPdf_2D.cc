@@ -378,3 +378,5 @@ analyticalIntegral(Int_t code, const char* rangeName) const {
 
   return ret;
 }
+
+ClassImp(RooACSemiAnalyticPdf_2D)
