@@ -74,6 +74,8 @@ protected:
   void readProfiles(RooACSemiAnalyticPdf_3D const& other);
   
   virtual double evaluate() const ;
+
+  ClassDef(RooACSemiAnalyticPdf_3D, 0)  
   
 };
 
