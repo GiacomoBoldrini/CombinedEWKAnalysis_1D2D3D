@@ -292,3 +292,4 @@ Double_t RooACProcessScaling_2D::evaluate() const
 
 }
 
+ClassImp(RooACProcessScaling_2D)

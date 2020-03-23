@@ -347,3 +347,5 @@ Double_t RooACSemiAnalyticPdf_1D::analyticalIntegral(Int_t code, const char* ran
 
   return ret;
 }
+
+ClassImp(RooACSemiAnalyticPdf_1D)

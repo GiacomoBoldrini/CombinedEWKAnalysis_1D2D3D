@@ -68,7 +68,8 @@ protected:
   void readProfiles(RooACProcessScaling_3D const& other);
   
   virtual double evaluate() const ;
-  
+
+  ClassDef(RooACProcessScaling_3D, 0)  
 };
 
 #endif

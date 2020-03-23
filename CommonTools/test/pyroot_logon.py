@@ -108,8 +108,8 @@ gStyle.SetNdivisions(505, "XYZ")
 
 if (gSystem.DynamicPathName("libFWCoreFWLite.so",True)):
     gSystem.Load('libHiggsAnalysisCombinedLimit')
-    gSystem.Load("$CMSSW_BASE/lib/$SCRAM_ARCH/libMMozerpowhegweight.so")
-    res = gSystem.Load("$CMSSW_BASE/lib/$SCRAM_ARCH/libHiggsAnalysisCombinedLimit.so")
+    gSystem.Load("$CMSSW_BASE/lib/$SCRAM_ARCH/libHiggsAnalysisCombinedLimit.so")
+    gSystem.Load("$CMSSW_BASE/lib/$SCRAM_ARCH/libCombinedEWKAnalysisCommonTools.so")
     gROOT.GetInterpreter().AddIncludePath(cmssw_base + '/src')
     gSystem.AddIncludePath('-I"' + cmssw_base + '/src"')
     if not RooFitInclude():
@@ -119,26 +119,8 @@ if (gSystem.DynamicPathName("libFWCoreFWLite.so",True)):
         RooFitInclude()
         print 'returning to working directory', workingdir
         os.chdir(workingdir)
-    gROOT.ProcessLine('.L EffTableReader.cc+')
-    gROOT.ProcessLine('.L EffTableLoader.cc+')
-    gROOT.ProcessLine('.L CPWeighter.cc+')
-    
-    if not TClass.GetClass('RooPowerLaw'):
-        # print 'importing RooFit PDF classes'
-        gROOT.ProcessLine('.L RooPowerLaw.cc+')
-    if not TClass.GetClass('RooPowerExpPdf'):
-        gROOT.ProcessLine('.L RooPowerExpPdf.cxx+')
-    if not TClass.GetClass('RooErfExpPdf'):
-        gROOT.ProcessLine('.L RooErfExpPdf.cxx+')
-    if not TClass.GetClass('RooErfPdf'):
-        gROOT.ProcessLine('.L RooErfPdf.cxx+')
-    if not TClass.GetClass('RooTH1DPdf'):
-        gROOT.ProcessLine('.L RooTH1DPdf.cxx+')
-    if not TClass.GetClass('RooChebyshevPdf'):
-        gROOT.ProcessLine('.L RooChebyshevPDF.cc+')
-    if not TClass.GetClass('alphaFunction'):
-        gROOT.ProcessLine('.L alphaFunction.cxx+')        
-    
+
+
 print 'end of pyroot_logon'
 
 if __name__ == '__main__':
