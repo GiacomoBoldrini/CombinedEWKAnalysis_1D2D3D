@@ -304,8 +304,8 @@ Double_t RooACProcessScaling_3D::evaluate() const
 
   for(int i = 0; i<N_bins; i++) {
  
+    std::cout <<"place D: case type= "<<type_ << std::endl;
     switch(type_) {
-      std::cout <<"place D: case type= "<<type_ << std::endl;
     case par1par2par3_TH3:
       ret += P_histo[i]->Interpolate(v1,v2,v3)*integral_basis[i];
       break;

@@ -1,8 +1,8 @@
 <lcgdict>
-  <class name="RooACProcessScaling_1D.h" />
-  <class name="RooACProcessScaling_2D.h" />
-  <class name="RooACProcessScaling_3D.h" />
-  <class name="RooACSemiAnalyticPdf_1D.h" />
-  <class name="RooACSemiAnalyticPdf_2D.h" />
-  <class name="RooACSemiAnalyticPdf_3D.h" />
+  <class name="RooACProcessScaling_1D" />
+  <class name="RooACProcessScaling_2D" />
+  <class name="RooACProcessScaling_3D" />
+  <class name="RooACSemiAnalyticPdf_1D" />
+  <class name="RooACSemiAnalyticPdf_2D" />
+  <class name="RooACSemiAnalyticPdf_3D" />
 </lcgdict>
