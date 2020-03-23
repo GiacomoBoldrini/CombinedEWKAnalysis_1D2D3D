@@ -148,10 +148,12 @@ NSigBkg_corr_unc_int=0
 
 basepath = '%s/src/CombinedEWKAnalysis/CommonTools/data/anomalousCoupling'%os.environ['CMSSW_BASE']
 
+print('Available sections: ', fit_sections)
 
 for section in fit_sections:
     codename = section
     lType = codename
+    print('Now dealing with section %s, by reading input file %s'%(section, '%s/%s.root'%(basepath,codename)))
     f = TFile('%s/%s.root'%(basepath,codename))
 #    f = TFile('%s/WZ_aQGC_inputs.root'%(basepath))
 
@@ -551,6 +553,7 @@ for section in fit_sections:
     theWS.Print()
     
     fout = TFile('%s_ws.root'%(codename), 'recreate')
+    print("Workspace {ws} created.".format(ws='%s_ws.root'%(codename)))
     theWS.Write()
     fout.Close()
 
@@ -635,7 +638,7 @@ rate                        {norm_sig_sm}\t""".format(codename=codename,norm_sig
             # write out only those bkg shape unc that are not correlated with signal shape syst:
             if not(isItCorrelated(background_shapeSyst[j][i])):
                 card += """
-{background_shapeSyst} shape1  """.format(codename=codename,norm_sig_sm=norm_sig_sm,norm_bkg=norm_bkg,norm_obs=norm_obs,i=i,background_shapeSyst=background_shapeSyst[j][i])
+{background_shapeSyst} shape """.format(codename=codename,norm_sig_sm=norm_sig_sm,norm_bkg=norm_bkg,norm_obs=norm_obs,i=i,background_shapeSyst=background_shapeSyst[j][i])
                 for k in range(0,j+1):
                     card += """-\t\t\t\t""".format(codename=codename,norm_sig_sm=norm_sig_sm,norm_bkg=norm_bkg,norm_obs=norm_obs,i=i,background_shapeSyst=background_shapeSyst[j][i])
                 card += """1.0 """.format(codename=codename,norm_sig_sm=norm_sig_sm,norm_bkg=norm_bkg,norm_obs=norm_obs,i=i,background_shapeSyst=background_shapeSyst[j][i])
@@ -652,7 +655,7 @@ rate                        {norm_sig_sm}\t""".format(codename=codename,norm_sig
                 int_forCorr=isItCorrelated_int(signal_shapeSyst[i])
 
             card += """
-{signal_shapeSyst}        shape1  1.0          """.format(signal_shapeSyst=name_forCorr)
+{signal_shapeSyst}        shape  1.0          """.format(signal_shapeSyst=name_forCorr)
             print " loop over Nbkg..."
             for j in range(0,Nbkg_int):
                 if (isItCorrelated_i(signal_shapeSyst[i],int_forCorr)):
@@ -672,4 +675,7 @@ rate                        {norm_sig_sm}\t""".format(codename=codename,norm_sig
 
     cardfile = open('aC_%s.txt'%(codename),'w')
     cardfile.write(card)
-    cardfile.close
+    print('Datacard %s created.' % 'aC_%s.txt'%(codename))
+    cardfile.close()
+    # Delete the workspace: the new python garbage collector does not really work well with RooWorkspace
+    del theWS 
