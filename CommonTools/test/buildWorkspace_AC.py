@@ -148,10 +148,12 @@ NSigBkg_corr_unc_int=0
 
 basepath = '%s/src/CombinedEWKAnalysis/CommonTools/data/anomalousCoupling'%os.environ['CMSSW_BASE']
 
+print('Available sections: ', fit_sections)
 
 for section in fit_sections:
     codename = section
     lType = codename
+    print('Now dealing with section %s, by reading input file %s'%(section, '%s/%s.root'%(basepath,codename)))
     f = TFile('%s/%s.root'%(basepath,codename))
 #    f = TFile('%s/WZ_aQGC_inputs.root'%(basepath))
 
@@ -551,6 +553,7 @@ for section in fit_sections:
     theWS.Print()
     
     fout = TFile('%s_ws.root'%(codename), 'recreate')
+    print("Workspace {ws} created.".format(ws='%s_ws.root'%(codename)))
     theWS.Write()
     fout.Close()
 
@@ -672,4 +675,7 @@ rate                        {norm_sig_sm}\t""".format(codename=codename,norm_sig
 
     cardfile = open('aC_%s.txt'%(codename),'w')
     cardfile.write(card)
-    cardfile.close
+    print('Datacard %s created.' % 'aC_%s.txt'%(codename))
+    cardfile.close()
+    # Delete the workspace: the new python garbage collector does not really work well with RooWorkspace
+    del theWS 
