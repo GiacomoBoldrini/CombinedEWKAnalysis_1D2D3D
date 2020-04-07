@@ -74,7 +74,7 @@ protected:
   virtual double evaluate() const ;
 
 
-ClassDef(RooACSemiAnalyticPdf_3D, 0)  
+ClassDef(RooACSemiAnalyticPdf_3D, 2)  
   
 };
 

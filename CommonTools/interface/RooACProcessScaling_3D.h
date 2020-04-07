@@ -69,7 +69,7 @@ protected:
   
   virtual double evaluate() const ;
 
-  ClassDef(RooACProcessScaling_3D, 0)  
+  ClassDef(RooACProcessScaling_3D, 2)  
 };
 
 #endif
