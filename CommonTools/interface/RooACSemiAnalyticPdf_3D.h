@@ -56,7 +56,6 @@ protected:
   LimitType type_;
 
   mutable std::map<std::string,std::vector<double> > integral_basis;
-
   mutable std::vector<double> bins; 
 
   TString profileFilename;
@@ -74,7 +73,7 @@ protected:
   virtual double evaluate() const ;
 
 
-ClassDef(RooACSemiAnalyticPdf_3D, 2)  
+ClassDef(RooACSemiAnalyticPdf_3D, 3)  
   
 };
 
