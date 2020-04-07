@@ -11,7 +11,7 @@
 #include "TH3D.h"
 #include "TF3.h"
 #include "TString.h"
-  
+
 class RooACSemiAnalyticPdf_3D : public RooAbsPdf {
 public:
   
@@ -30,11 +30,9 @@ public:
 			   const char * parFilename,
 			   const unsigned& lt);
   RooACSemiAnalyticPdf_3D (const RooACSemiAnalyticPdf_3D& other, const char * name);
-  virtual TObject * clone(const char * newname) const { 
-    return new RooACSemiAnalyticPdf_3D(*this, newname);
-    }
-  
-  virtual ~RooACSemiAnalyticPdf_3D ();
+  TObject * clone(const char * newname) const;
+
+  ~RooACSemiAnalyticPdf_3D ();
   
   //  void setLimitType(const unsigned& lt) { type_ = (LimitType)lt; }
 
@@ -63,8 +61,8 @@ protected:
 
   TString profileFilename;
   
-  TH3D ** P_par1par2par3_histo; //!
-  TF3 ** P_par1par2par3_TF; //!
+  mutable TH3D ** P_par1par2par3_histo; //!
+  mutable TF3 ** P_par1par2par3_TF; //!
   
   void initializeProfiles();
   void initializeBins(const RooAbsReal& shape) const;
@@ -75,7 +73,8 @@ protected:
   
   virtual double evaluate() const ;
 
-  ClassDef(RooACSemiAnalyticPdf_3D, 0)  
+
+ClassDef(RooACSemiAnalyticPdf_3D, 0)  
   
 };
 

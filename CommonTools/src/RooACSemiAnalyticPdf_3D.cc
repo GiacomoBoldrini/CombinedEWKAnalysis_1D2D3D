@@ -119,6 +119,11 @@ void RooACSemiAnalyticPdf_3D::initializeBins(const RooAbsReal& dep) const {
 }
 
 
+TObject * RooACSemiAnalyticPdf_3D::clone(const char * newname) const { 
+  return new RooACSemiAnalyticPdf_3D(*this, newname);
+}
+
+
 void RooACSemiAnalyticPdf_3D::initializeNormalization(const std::string& rName,
 						     const RooAbsReal& dep,
 						     const RooAbsReal& shape) const {
