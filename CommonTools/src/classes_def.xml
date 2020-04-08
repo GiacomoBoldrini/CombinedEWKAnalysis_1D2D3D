@@ -1,5 +1,7 @@
 <lcgdict>
+  <class name="map<std::string,std::vector<double> >" />
   <class name="std::vector<std::vector<Float_t>>" />
+  <class name="std::vector<double>" />
   <class name="RooACProcessScaling_1D" />
   <class name="RooACProcessScaling_2D" />
   <class name="RooACProcessScaling_3D" />

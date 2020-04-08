@@ -57,8 +57,8 @@ protected:
 
   TString profileFilename;
   
-  TH1D ** P_par1_histo; //!
-  TF1 ** P_par1_TF; //!
+  mutable TH1D ** P_par1_histo; //!
+  mutable TF1 ** P_par1_TF; //!
   
   void initializeProfiles();
   void initializeBins(const RooAbsReal& shape) const;
@@ -69,7 +69,7 @@ protected:
   
   virtual double evaluate() const ;
 
-  ClassDef(RooACSemiAnalyticPdf_1D, 0)  
+  ClassDef(RooACSemiAnalyticPdf_1D, 3)  
 };
 
 #endif

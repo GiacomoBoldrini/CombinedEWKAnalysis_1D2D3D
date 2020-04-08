@@ -54,13 +54,13 @@ protected:
   LimitType type_;
 
   double SM_integral;
-  std::vector<double> integral_basis;
-  std::vector<double> bins;
+  mutable std::vector<double> integral_basis;
+  mutable std::vector<double> bins;
 
   TString profileFilename;
   
-  TH3D ** P_par1par2par3_histo; //!
-  TF3 ** P_par1par2par3_TF; //!
+  mutable TH3D ** P_par1par2par3_histo; //!
+  mutable TF3 ** P_par1par2par3_TF; //!
   
   void initializeProfiles();
   void initializeNormalization(const RooAbsReal& dep,
@@ -69,7 +69,7 @@ protected:
   
   virtual double evaluate() const ;
 
-  ClassDef(RooACProcessScaling_3D, 0)  
+  ClassDef(RooACProcessScaling_3D, 3)  
 };
 
 #endif
