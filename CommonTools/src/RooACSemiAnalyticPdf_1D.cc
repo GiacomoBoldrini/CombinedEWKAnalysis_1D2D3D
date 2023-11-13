@@ -341,9 +341,9 @@ Double_t RooACSemiAnalyticPdf_1D::analyticalIntegral(Int_t code, const char* ran
     }
 
   }
-  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1(v1): "<<v1 <<" ret: "<<ret<< std::endl;
-  
-  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---> integral: "<<ret<< std::endl;
+  // std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1(v1): "<<v1 <<" ret: "<<ret<< std::endl;
+  // 
+  // std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---> integral: "<<ret<< std::endl;
 
   return ret;
 }

@@ -372,9 +372,9 @@ analyticalIntegral(Int_t code, const char* rangeName) const {
     }
 
   }
-  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1(v1): "<<v1<<" par2(v2): "<<v2 <<" ret: "<<ret<< std::endl;
-  
-  std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---> integral: "<<ret<< std::endl;
+  // std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--> par1(v1): "<<v1<<" par2(v2): "<<v2 <<" ret: "<<ret<< std::endl;
+  // 
+  // std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---> integral: "<<ret<< std::endl;
 
   return ret;
 }
